@@ -16,6 +16,7 @@ home = Path.cwd()
 filepath = Path.joinpath(home, 'data', 'master.csv')
 df1 = pd.read_csv(filepath)
 df1.rename(columns={'suicides/100k pop':'per100'}, inplace=True)
+df1['country'].replace('Russian Federation','Russia', inplace=True)
 
 filepath2 = Path.joinpath(home, 'data', 'd3-world-map.csv')
 df2 = pd.read_csv(filepath2)
