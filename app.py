@@ -31,7 +31,7 @@ df5 = df4.groupby(['country','locations','year']).agg(sum).reset_index()
 
 #Set up for information about ther data set used and github repository
 mygraphtitle = 'Suicide Rates by Country by Year'
-mycolorscale = 'blues' # Note: The error message will list possible color scales.
+mycolorscale = 'plasma' # Note: The error message will list possible color scales.
 mycolorbartitle = "Suicides per 100k"
 tabtitle = 'Global Mental Health'
 sourceurl = 'https://www.kaggle.com/russellyates88/suicide-rates-overview-1985-to-2016'
