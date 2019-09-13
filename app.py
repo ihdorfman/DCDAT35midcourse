@@ -36,3 +36,25 @@ mycolorbartitle = "Suicides per 100k"
 tabtitle = 'Global Mental Health'
 sourceurl = 'https://www.kaggle.com/russellyates88/suicide-rates-overview-1985-to-2016'
 githublink = 'https://github.com/ihdorfman/DCDAT35midcourse'
+
+
+########### Initiate the app
+external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
+app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
+server = app.server
+app.title=tabtitle
+
+
+#MAIN APP GUTS GO HERE!!!!
+
+
+
+
+
+
+
+
+
+############ Deploy
+if __name__ == '__main__':
+    app.run_server()
