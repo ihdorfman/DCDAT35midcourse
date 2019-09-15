@@ -1,3 +1,7 @@
+#DCDAT35 Midcourse Project
+#Isaac Dorfman
+#September 14, 2019
+#Portions of code adapted from: https://towardsdatascience.com/a-gentle-invitation-to-interactive-visualization-with-dash-a200427ccce9
 
 import dash
 import dash_core_components as dcc
@@ -7,7 +11,6 @@ from dash.dependencies import Input, Output
 import pandas as pd
 import plotly.graph_objs as go
 
-from pathlib import Path
 
 # Step 0. Set up informational variables
 sourceurl = 'https://www.kaggle.com/russellyates88/suicide-rates-overview-1985-to-2016'
@@ -21,23 +24,14 @@ server = app.server
 app.title=tabtitle
 
 # Step 2. Import the dataset
-home = Path.cwd()
-
-filepath = Path.joinpath(home, 'data', 'master.csv')
-df1 = pd.read_csv(filepath)
+df1 = pd.read_csv('data/master.csv')
 df1.rename(columns={'suicides/100k pop':'per100'}, inplace=True)
 df1['country'].replace('Russian Federation','Russia', inplace=True)
 
-filepath2 = Path.joinpath(home, 'data', 'd3-world-map.csv')
-df2 = pd.read_csv(filepath2)
-df2.drop(columns='z', inplace=True)
-df2.rename(columns={'text':'country'}, inplace=True)
 
-df3 = pd.merge(df1, df2, on='country')
+df4 = df1[['country','year','per100']]
 
-df4 = df3[['country','year','per100','locations']]
-
-df5 = df4.groupby(['country','locations','year']).agg(sum).reset_index()
+df5 = df4.groupby(['country','year']).agg(sum).reset_index()
 
 
 # year slider options
@@ -72,7 +66,7 @@ app.layout = html.Div([
                     html.P("Isaac Dorfman - DCDAT35 Midcourse Project")
                          ],
                      style = {'padding' : '15px' ,
-                              'backgroundColor' : '#8DA1A0'}),
+                              'backgroundColor' : '#8DA1A0', 'width':1050}),
                 # range slider
                 html.P([
                     html.Label("Year:"),
