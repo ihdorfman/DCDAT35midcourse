@@ -25,11 +25,13 @@ app.title=tabtitle
 
 # Step 2. Import the dataset
 df1 = pd.read_csv('data/master.csv')
-df1.rename(columns={'suicides/100k pop':'per100'}, inplace=True)
+#df1.rename(columns={'suicides/100k pop':'per100'}, inplace=True)
 df1['country'].replace('Russian Federation','Russia', inplace=True)
 
 
-df4 = df1[['country','year','per100']]
+df4 = df1[['country','year','suicides_no','population']]
+df4['newpop'] = df4['population']/100000
+df4['per100'] = df4['suicides_no']/df4['newpop']
 
 df5 = df4.groupby(['country','year']).agg(sum).reset_index()
 
